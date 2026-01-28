@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /marketplace
+  tomcat:
+    max-swallow-size: -1
+    max-http-form-post-size: -1
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/rbc?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: rbcuser
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    root: error
+    org.springframework.web: error
+
+management:
+  endpoint:
+    health:
+      show-details: always
