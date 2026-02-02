@@ -1,7 +1,7 @@
 package com.rbccoding.sdk.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
+
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,26 +16,23 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StockData {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // mandatory for JPA
+    private Long id;
 
-    private Integer quarter;
-    private String stock;
-    private String date; // or LocalDate if you want parsing
-    private Double open;
-    private Double high;
-    private Double low;
-    private Double close;
+    private String ticker;
+
+    private LocalDate tradeDate;
+
+    private Double openPrice;
+    private Double highPrice;
+    private Double lowPrice;
+    private Double closePrice;
+
     private Long volume;
-    private Double percentChangePrice;
-    private Double percentChangeVolumeOverLastWeek;
-    private Long previousWeeksVolume;
-    private Double nextWeeksOpen;
-    private Double nextWeeksClose;
-    private Double percentChangeNextWeeksPrice;
-    private Integer daysToNextDividend;
-    private Double percentReturnNextDividend;
+
+    private Double percentChange;
 
 
 }

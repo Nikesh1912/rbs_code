@@ -16,33 +16,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/stock-data")
 public class StockDataController {
+    private final StockDataService stockDataService;
 
-    private  final StockDataService stockDataService;
-
-    @PostMapping("/bulk-insert")
-    public ResponseEntity<String> bulkUpload(
-            @RequestHeader("X-Client_Id") String clientId,
-            @RequestParam("file") MultipartFile file) {
-
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("File is empty");
-        }
-
-        stockDataService.bulkInsert(file); // <-- works now
-        return ResponseEntity.ok("Bulk upload successful");
+    // Upload CSV
+    @PostMapping("/upload")
+    public String upload(@RequestParam MultipartFile file) {
+        stockDataService.uploadBulk(file);
+        return "Uploaded successfully";
     }
 
-
+    // Query by ticker
     @GetMapping("/{ticker}")
-    public List<StockData> getByTicker(@PathVariable String ticker) {
+    public List<StockData> get(@PathVariable String ticker) {
         return stockDataService.getByTicker(ticker);
     }
 
+    // Add single record
     @PostMapping
-    public StockData addRecord(
-            @RequestHeader("X-Client_Id") String clientId,
-            @RequestBody StockData data) {
-
-        return stockDataService.addRecord(data);
+    public StockData add(@RequestBody StockData stockData) {
+        return stockDataService.save(stockData);
     }
+
 }
