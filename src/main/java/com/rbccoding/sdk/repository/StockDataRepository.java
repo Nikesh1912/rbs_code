@@ -1,6 +1,7 @@
 package com.rbccoding.sdk.repository;
 
 import com.rbccoding.sdk.entity.StockData;
+import com.rbccoding.sdk.model.StockDataModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

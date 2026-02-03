@@ -44,7 +44,5 @@ public class StockData {
 
     @Column(name = "percent_change", precision = 6, scale = 2)
     private BigDecimal percentChange;
-
-
 }
 

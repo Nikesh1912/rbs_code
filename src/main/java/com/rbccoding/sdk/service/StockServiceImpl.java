@@ -1,6 +1,8 @@
 package com.rbccoding.sdk.service;
 
 import com.rbccoding.sdk.entity.StockData;
+import com.rbccoding.sdk.mapper.StockMapper;
+import com.rbccoding.sdk.model.StockDataModel;
 import com.rbccoding.sdk.repository.StockDataRepository;
 import com.rbccoding.sdk.util.CsvParserUtil;
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ import java.util.List;
 public class StockServiceImpl implements StockDataService{
 
     private final StockDataRepository stockDataRepository;
+    private final StockMapper stockMapper;
 
     @Override
     public void uploadBulk(MultipartFile file) {
@@ -32,8 +35,11 @@ public class StockServiceImpl implements StockDataService{
         return stockDataRepository.findByTicker(ticker);
     }
 
+
     @Override
-    public StockData save(StockData stock) {
-        return stockDataRepository.save(stock);
+    public StockDataModel createEntry(StockDataModel stockDataModel) {
+         StockData stockData = stockMapper.populateEntity(stockDataModel);
+        StockData save = stockDataRepository.save(stockData);
+         return stockMapper.populateModel(save);
     }
 }
