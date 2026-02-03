@@ -1,6 +1,7 @@
 package com.rbccoding.sdk.util;
 
 import com.rbccoding.sdk.entity.StockData;
+import lombok.Builder;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStreamReader;
@@ -9,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Builder
 public class CsvParserUtil {
 
     public static List<StockData> parse(MultipartFile file) {
