@@ -26,7 +26,6 @@ public class CsvParserUtil {
 
             String[] row;
 
-            // ✅ skip header
             reader.readNext();
 
             while ((row = reader.readNext()) != null) {
@@ -54,7 +53,6 @@ public class CsvParserUtil {
         return stocks;
     }
 
-    // ✅ SAFE decimal parsing (no precision loss)
     private static BigDecimal parseDecimal(String s) {
         if (s == null || s.isBlank()) return BigDecimal.ZERO;
         return new BigDecimal(s.replace("$", "").trim());
